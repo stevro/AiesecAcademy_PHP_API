@@ -19,7 +19,7 @@ end
 
 
 set   :scm,               :git
-set   :repository,        "git@bitbucket.org:stev_ro/smart.git"
+set   :repository,        "https://github.com/stevro/aiesec.git"
 
 role  :web,               domain
 role  :app,               domain

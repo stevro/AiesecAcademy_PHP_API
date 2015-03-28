@@ -83,7 +83,7 @@ fos_rest:
         failed_validation: HTTP_BAD_REQUEST
     format_listener:
         rules:
-            - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: false }
+            - { path: ^/, priorities: [ json, xml, html ], fallback_format: ~, prefer_extension: false }
         media_type:
             version_regex: '/(v|version)=(?P<version>[0-9\.]+)/'
     exception:
