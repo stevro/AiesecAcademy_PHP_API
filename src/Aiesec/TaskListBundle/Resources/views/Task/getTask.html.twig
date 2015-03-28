@@ -1,0 +1,23 @@
+{% extends "AiesecTaskListBundle::layout.html.twig" %}
+
+{% block title "Task " ~ task %}
+
+    {% block body %}
+        <table class="table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>{{ task }}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{ task.description }}</td>
+            </tr>
+            <tr>
+                <td>Deadline</td>
+                <td>{{ task.deadline | date('d-M-Y') }}</td>
+            </tr>
+        </table>
+        <a href='{{path('edit_task', {'id':task.id})}}'>Edit</a>
+        {% include 'AiesecTaskListBundle:Task:deleteForm.html.twig' %}
+        <a href='{{path('get_tasks')}}'>Back to list</a>
+    {% endblock %}

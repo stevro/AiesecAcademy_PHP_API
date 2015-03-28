@@ -1,0 +1,21 @@
+{% extends "AiesecTaskListBundle::layout.html.twig" %}
+
+{% block title "Task" %}
+
+    {% block body %}
+        <h1 class="title">Edit task</h1>
+
+        {%  if (form is defined) %}
+            <form action="{{ url('put_task', {'id':form.vars.data.id}) }}" method="POST" {{ form_enctype(form) }}>
+                <input type="hidden" name="_method" value="put" />
+
+                {% include 'AiesecTaskListBundle:Task:form.html.twig' %}
+
+                {{ form_rest(form) }}
+
+                <input type="submit" value="Update Task">
+            </form>
+        {% endif %}
+
+    {% endblock %}
+

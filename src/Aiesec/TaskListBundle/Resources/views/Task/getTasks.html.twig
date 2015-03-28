@@ -1,0 +1,31 @@
+{% extends "AiesecTaskListBundle::layout.html.twig" %}
+
+{% block title "Tasks" %}
+
+    {% block body %}
+        <a href="{{path('new_task')}}">Add new</a> <br/>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task }} {{task.status}}</td>
+                        <td>
+                            <a href="{{path('get_task', {'id':task.id})}}">Show</a> <br/>
+                            <a href="{{path('edit_task', {'id':task.id})}}">Edit</a> <br/>
+                            {% include 'AiesecTaskListBundle:Task:deleteForm.html.twig' %}
+                            {% if task.status == constant('Aiesec\\TaskListBundle\\Entity\\Task::PENDING')%}
+                                {% include 'AiesecTaskListBundle:Task:markAsDoneForm.html.twig' %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endblock %}
