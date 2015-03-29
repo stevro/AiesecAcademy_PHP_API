@@ -27,7 +27,8 @@
         "hautelook/templated-uri-bundle": "~2.0",
         "willdurand/rest-extra-bundle": "~1.0",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "symfony/var-dumper": "3.0.*@dev"
+        "symfony/var-dumper": "3.0.*@dev",
+        "nelmio/cors-bundle": "~1.4"
     },
     "conflict": {
         "symfony/routing": "2.4.1"
