@@ -61,6 +61,10 @@ class TaskController extends FOSRestController
 
         $tasks = $entityManager->getRepository('AiesecTaskListBundle:Task')->findBy(array(), array('deadline' => 'ASC'), $limit, $offset);
 
+        if(empty($tasks)){
+            throw $this->createNotFoundException('No more tasks available');
+        }
+
         return $tasks;
     }
 
@@ -226,7 +230,7 @@ class TaskController extends FOSRestController
         $entityManager = $this->getDoctrine()->getManager();
 
         $task = $entityManager->getRepository('AiesecTaskListBundle:Task')->find($id);
-        if (false === $task) {
+        if (!$task) {
             $task = new Task();
 
             $statusCode = Codes::HTTP_CREATED;
@@ -316,7 +320,7 @@ class TaskController extends FOSRestController
         $entityManager = $this->getDoctrine()->getManager();
 
         $task = $entityManager->getRepository('AiesecTaskListBundle:Task')->find($id);
-        if (false === $task) {
+        if (!$task) {
             throw $this->createNotFoundException("Task does not exist.");
         }
 
