@@ -69,6 +69,7 @@ class TaskController extends FOSRestController
      *
      * @ApiDoc(
      *   output = "Aiesec\TaskListBundle\Entity\Task",
+     *   resource = true,
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when the task is not found"
