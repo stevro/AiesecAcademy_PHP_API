@@ -4,6 +4,7 @@ namespace Aiesec\TaskListBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TaskType extends AbstractType
@@ -27,18 +28,28 @@ class TaskType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+
         $resolver->setDefaults(array(
             'data_class' => 'Aiesec\TaskListBundle\Entity\Task',
             'csrf_protection' => false,
-        ));
-    }
+            'validation_groups' => function(FormInterface $form) {
+                $data = $form->getData();
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'aiesec_tasklistbundle_task';
-    }
+                if (null !== $data->getId()) {
+                    return array('Edit', 'Default');
+                }
 
-}
+                return array('Create', 'Default');
+            },
+                ));
+            }
+
+            /**
+             * @return string
+             */
+            public function getName()
+            {
+                return 'aiesec_task';
+            }
+
+        }

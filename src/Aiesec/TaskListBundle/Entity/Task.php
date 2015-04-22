@@ -63,7 +63,7 @@ class Task
      * @ORM\Column(name="deadline", type="date")
      * @Assert\NotBlank()
      * @Assert\Date()
-     * @Assert\GreaterThanOrEqual("now")
+     * @Assert\GreaterThanOrEqual("now", groups={"Create"})
      */
     private $deadline;
 
